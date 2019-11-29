@@ -167,3 +167,6 @@ La commande `systemctl list-units`nous permet d'observer le processus chronyd et
 ## Boot et Logs
 
 La commande `systemd-analyze plot > graphe.svg` nous permet de génerer un grapique de la séquence de boot :
+
+![alt text](https://github.com/LPresence/LEOpensource/blob/master/graphe.svg "graphe séquence boot 1")
+
