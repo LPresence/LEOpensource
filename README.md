@@ -1,5 +1,5 @@
 # LEOpensource
-Tp open source
+Tp open source by Lukas Presencia
 
 ## 1
 `systemctl --version`
@@ -155,6 +155,8 @@ Lors d'une requete `host google.fr`nous pouvons vérifier que le dns utilise le 
 
 > tcpdump -vvAs0 port 853
 
+Cette commande affiche la requete dns et montre bien qu'elle passe par le port 853 (sécurisé donc). La meme commande sur le port 53 ne montre rien étant donné que le dns passe désormais par TLS sur le port 853.
+
 
 
 ## Logind
@@ -227,4 +229,12 @@ Avec l'ajout des parametres ` -p IPAddressAllow=10.0.2.0/24 -p IPAddressDeny=any
            
            ping: sendmsg: Operation not permitted
            
+
+La commande systemd-nspawn semble faire crash mon terminal. 
+
+Avec l'argument `ephemeral ` le conteneur est exécuté avec un instantané temporaire de son file systeme qui est supprimé immédiatement lorsque le conteneur se termine. L'argument `private-network ` déconnecte la mise en réseau du conteneur. Cela rend toutes les interfaces réseau indisponibles dans le conteneur, à l'exception du périphérique loopback.
+
+Il est par exemple possible de restreindre encore plus son execution avec des paramètres comme `--rlimit` pour limiter ses ressources.
+
+## Skip to creation de services simples
 
