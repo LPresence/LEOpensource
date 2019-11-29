@@ -6,7 +6,7 @@ Tp open source
 
 
 La commande `systemctl status` nous montre que systemd opère bien en PID1
-           > │ └─1 /usr/lib/systemd/systemd --switched-root --system --deserialize 30
+> │ └─1 /usr/lib/systemd/systemd --switched-root --system --deserialize 30
            
 la commande `ps --ppid 2 -p 2 --deselect` permet de lister les processus système not kernel
 
