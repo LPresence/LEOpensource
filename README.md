@@ -218,3 +218,13 @@ Lors de l'execution d'un processus avec le parametre `-p IPAccounting=true ` on 
            IP traffic received: 588B
            IP traffic sent: 588B
 
+Avec l'ajout des parametres ` -p IPAddressAllow=10.0.2.0/24 -p IPAddressDeny=any` on s'apercoit que le processus ne peut pas pinguer des machines hors du scope 10.0.2.0/24 :
+>
+           
+           PING 192.168.10.1 (192.168.10.1) 56(84) bytes of data.
+           
+           ping: sendmsg: Operation not permitted
+           
+           ping: sendmsg: Operation not permitted
+           
+
