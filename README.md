@@ -14,10 +14,15 @@ La commande `ps --ppid 2 -p 2 --deselect` permet de lister les processus systèm
 ## 2
 
 > [admin@localhost root]$ timedatectl
+
 >               Local time: ven. 2019-11-29 11:06:51 CET
+
 >           Universal time: ven. 2019-11-29 10:06:51 UTC
+
 >                 RTC time: ven. 2019-11-29 10:04:22
+
 >                Time zone: Europe/Paris (CET, +0100)
+
 
 
 
