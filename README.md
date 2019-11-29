@@ -50,7 +50,7 @@ Le nom d'hote static est a privilégier en production.
 
 ### Networkmanager
 
->          nmcli con show
+> nmcli con show
 
            NAME     UUID                                  TYPE      DEVICE
  
