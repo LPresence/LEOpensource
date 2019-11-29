@@ -38,5 +38,14 @@ Le Local Time correspond à l'heure de la machine sur son fuseau horaire, le Uni
 >               NTP service: inactive
 
 
+## 3 
+
+Changer le hostname avec `hostnamectl set-hostname fedo1`
+Le nom d’hôte "pretty" est de haut niveau et peut inclure toutes sortes de caractères spéciaux, le nom d’hôte static est utilisé pour initialiser le nom d’hôte du noyau au démarrage et le nom d’hôte transient qui est une valeur de secours reçue de la configuration du réseau.
+
+Le nom d'hote static est a privilégier en production.
+
+## 4
+
 
 
