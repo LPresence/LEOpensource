@@ -35,7 +35,7 @@ Le Local Time correspond à l'heure de la machine sur son fuseau horaire, le Uni
 `timedatectl set-timezone Europe/Paris` pour passer sur le fuseau horaire français.
 
 `timedatectl set-ntp 0` permet de desactiver le ntp.
->               NTP service: inactive
+> NTP service: inactive
 
 
 ## 3 
