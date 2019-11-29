@@ -48,14 +48,15 @@ Le nom d'hote static est a privilégier en production.
 
 ## 4
 
+### Networkmanager
 
-> nmcli con show
+>          nmcli con show
 
- NAME     UUID                                  TYPE      DEVICE
+           NAME     UUID                                  TYPE      DEVICE
  
- enp0s3   ca39e4fd-ceda-3fee-9d51-8dd4b9828c6b  ethernet  enp0s3
+           enp0s3   ca39e4fd-ceda-3fee-9d51-8dd4b9828c6b  ethernet  enp0s3
  
- docker0  c658a840-70e9-4af1-b8b9-6b5c29275fc8  bridge    docker0
+           docker0  c658a840-70e9-4af1-b8b9-6b5c29275fc8  bridge    docker0
  
  
 > [root@fedo1 ~]#  cat /var/lib/NetworkManager/internal-ca39e4fd-ceda-3fee-9d51-8dd4b9828c6b-enp0s3.lease
@@ -84,11 +85,15 @@ Le nom d'hote static est a privilégier en production.
 
 Pour stopper NetworkManager : `systemctl stop NetworkManager`
 
-Pour activer systemc-networkd : `systemctl start systemd-networkd`
+### Systemd-networkd
+
+Pour activer systemd-networkd : `systemctl start systemd-networkd`
 
 Configuration de /etc/systemd/network/enp0s3network :
 
->          [Match]
+> vim /etc/systemd/network/enp0s3network
+
+           [Match]
 
            Key=enp0s3
 
@@ -101,4 +106,12 @@ Configuration de /etc/systemd/network/enp0s3network :
            DNS=10.33.10.20
 
 
+
+### Systemd-resolv
+
+`systemctl start systemd-resolved && systemctl enable systemd-resolved`
+
+La commande `netstat -laputn`nous montre un serveur dns local :
+
+> udp        0      0 127.0.0.53:53           0.0.0.0:*                           1143/systemd-resolv
 
