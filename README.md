@@ -236,5 +236,33 @@ Avec l'argument `ephemeral ` le conteneur est exécuté avec un instantané temp
 
 Il est par exemple possible de restreindre encore plus son execution avec des paramètres comme `--rlimit` pour limiter ses ressources.
 
-## 
+## Petit skip to creation de services 
+
+>          
+           [Unit]
+           
+           Description=mon service web
+           
+           After=network.target
+           
+           StartLimitIntervalSec=0[Service]
+           
+           Type=simple
+           
+           Restart=always
+           
+           RestartSec=1
+           
+           User=centos
+           
+           ExecStart=/usr/bin/nginx
+           
+           ExecStop=/
+           
+           MemoryMax=512M
+
+           [Install]
+           
+           WantedBy=multi-user.target
+
 
