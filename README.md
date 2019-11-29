@@ -130,9 +130,10 @@ DNS over TLS est un protocole de sécurité permettant de chiffrer et d'encapsul
            DNSOverTLS=opportunistic
 
 Et la commande `resolvectl status`nous donne :
->          Global
+>          
+           Global
 
-       LLMNR setting: yes
+           LLMNR setting: yes
        
            MulticastDNS setting: yes
            
@@ -150,3 +151,19 @@ Et la commande `resolvectl status`nous donne :
            
                                  8.8.8.8
 
+Lors d'une requete `host google.fr`nous pouvons vérifier que le dns utilise le port 853 et donc passe en TLS :
+
+> tcpdump -vvAs0 port 853
+
+
+
+## Logind
+
+## Services
+
+La commande `systemctl list-units`nous permet d'observer le processus chronyd et son unité :
+> chronyd.service                                                                          loaded active running   NTP client/server
+
+## Boot et Logs
+
+La commande `systemd-analyze plot > graphe.svg` nous permet de génerer un grapique de la séquence de boot :
