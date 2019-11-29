@@ -50,7 +50,37 @@ Le nom d'hote static est a privilégier en production.
 
 
 > nmcli con show
+
  NAME     UUID                                  TYPE      DEVICE
+ 
  enp0s3   ca39e4fd-ceda-3fee-9d51-8dd4b9828c6b  ethernet  enp0s3
+ 
  docker0  c658a840-70e9-4af1-b8b9-6b5c29275fc8  bridge    docker0
+ 
+ 
+> [root@fedo1 ~]#  cat /var/lib/NetworkManager/internal-ca39e4fd-ceda-3fee-9d51-8dd4b9828c6b-enp0s3.lease
+
+ # This is private data. Do not parse.
+
+ ADDRESS=10.0.2.10
+
+ NETMASK=255.255.255.0
+
+ ROUTER=10.0.2.1
+
+ SERVER_ADDRESS=10.0.2.3
+
+ T1=600
+
+ T2=1050
+
+ LIFETIME=1200
+
+ DNS=10.33.10.20 10.33.10.2 8.8.8.8 8.8.4.4
+
+ DOMAINNAME=auvence.co
+
+ CLIENTID=010800274ab3b3
+
+
 
