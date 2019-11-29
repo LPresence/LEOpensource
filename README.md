@@ -115,3 +115,38 @@ La commande `netstat -laputn`nous montre un serveur dns local :
 
 > udp        0      0 127.0.0.53:53           0.0.0.0:*                           1143/systemd-resolv
 
+DNS over TLS est un protocole de sécurité permettant de chiffrer et d'encapsuler les requêtes DNS avec le protocole TLS. L'objectif est d'améliorer la confidentialité et la sécurité des utilisateurs en empêchant l'écoute et la manipulation des données DNS via un MITM.
+
+#### Configuration du DNS over TLS 
+
+> cat /etc/systemd/resolved.conf
+
+           [Resolve]
+           
+           DNS=9.9.9.9
+           
+           FallbackDNS=1.1.1.1 8.8.8.8
+
+           DNSOverTLS=opportunistic
+
+Et la commande `resolvectl status`nous donne :
+>          Global
+
+       LLMNR setting: yes
+       
+           MulticastDNS setting: yes
+           
+           DNSOverTLS setting: opportunistic
+           
+           DNSSEC setting: allow-downgrade
+           
+           DNSSEC supported: yes
+           
+           Current DNS Server: 9.9.9.9
+           
+           DNS Servers: 9.9.9.9
+           
+           Fallback DNS Servers: 1.1.1.1
+           
+                                 8.8.8.8
+
