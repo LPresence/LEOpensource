@@ -195,9 +195,26 @@ La commande `ps -e -o pid,cmd,cgroup` affiche les differents processus accompagn
 ### Dbus
 
 > dbus-monitor --system      
+           
            signal time=1575039116.000557 sender=:1.2 -> destination=(null destination) serial=1177 path=/org/freedesktop/systemd1/unit/chronyd_2eservice; interface=org.freedesktop.DBus.Properties; member=PropertiesChanged
 
            string "org.freedesktop.systemd1.Service"
            
 Cet evenement intervient lors du redémarrage du service chronyd. L'objet /org/freedesktop/systemd1/unit/chronyd_2eservice emet un signal "PropertiesChanged" en broadcast vers l'interface org.freedesktop.DBus.Properties afin de modifier les propriétes us processus. 
+
+Losqu'on demande le rafraichissement d'un autre service comme sshd, on s'aperçoit que les actions sont sensiblement les même avec une différence notable pour le champs `path=/org/freedesktop/systemd1/unit/sshd_2eservice`.
+
+## Namespaces
+
+Le cgroup utilisé lors du lancement d'un processus avec systemd-run sur ma machine est `─session-1.scope`.
+
+La commande `systemd-run  -p MemoryMax=512M  --wait -t /bin/bash` permet d'executer un shell de facon sandboxée et avec une limite de mémoire ram de 512Mo.
+
+Lors de l'execution d'un processus avec le parametre `-p IPAccounting=true ` on observe des informations supplémentaires a la sortie du processus :
+>         
+           Main processes terminated with: code=exited/status=0
+           Service runtime: 43.798s
+           CPU time consumed: 224ms
+           IP traffic received: 588B
+           IP traffic sent: 588B
 
