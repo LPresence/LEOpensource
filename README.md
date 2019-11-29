@@ -170,3 +170,34 @@ La commande `systemd-analyze plot > graphe.svg` nous permet de génerer un grapi
 
 ![alt text](https://github.com/LPresence/LEOpensource/blob/master/graphe.svg "graphe séquence boot 1")
 
+## Cgroups
+
+La commande `ps -e -o pid,cmd,cgroup` affiche les differents processus accompagnés de leurs cgroups. On peut voir que le cgroup utilisé par notre session ssh est `0::/user.slice/user-0.slice/session-4.scope`.
+
+> cat /sys/fs/cgroup/user.slice/memory.max
+
+           max
+
+> systemctl set-property user.slice MemoryMax=512M
+
+> cat /sys/fs/cgroup/user.slice/memory.max
+          
+          536870912
+          
+> ls -la /etc/systemd/system.control/user.slice.d/
+           total 4
+           drwxr-xr-x 2 root root  31 29 nov.  15:39 .
+           
+           drwxr-xr-x 3 root root  26 29 nov.  15:39 ..
+           
+           -rw-r--r-- 1 root root 149 29 nov.  15:39 50-MemoryMax.conf
+           
+### Dbus
+
+> dbus-monitor --system      
+           signal time=1575039116.000557 sender=:1.2 -> destination=(null destination) serial=1177 path=/org/freedesktop/systemd1/unit/chronyd_2eservice; interface=org.freedesktop.DBus.Properties; member=PropertiesChanged
+
+           string "org.freedesktop.systemd1.Service"
+           
+Cet evenement intervient lors du redémarrage du service chronyd. L'objet /org/freedesktop/systemd1/unit/chronyd_2eservice emet un signal "PropertiesChanged" en broadcast vers l'interface org.freedesktop.DBus.Properties afin de modifier les propriétes us processus. 
+
