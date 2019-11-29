@@ -60,27 +60,45 @@ Le nom d'hote static est a privilégier en production.
  
 > [root@fedo1 ~]#  cat /var/lib/NetworkManager/internal-ca39e4fd-ceda-3fee-9d51-8dd4b9828c6b-enp0s3.lease
 
- # This is private data. Do not parse.
+           This is private data. Do not parse.
 
- ADDRESS=10.0.2.10
+           ADDRESS=10.0.2.10
 
- NETMASK=255.255.255.0
+           NETMASK=255.255.255.0
 
- ROUTER=10.0.2.1
+           ROUTER=10.0.2.1
 
- SERVER_ADDRESS=10.0.2.3
+           SERVER_ADDRESS=10.0.2.3
 
- T1=600
+           T1=600
 
- T2=1050
+           T2=1050
 
- LIFETIME=1200
+           LIFETIME=1200
 
- DNS=10.33.10.20 10.33.10.2 8.8.8.8 8.8.4.4
+           DNS=10.33.10.20 10.33.10.2 8.8.8.8 8.8.4.4
 
- DOMAINNAME=auvence.co
+           DOMAINNAME=auvence.co
 
- CLIENTID=010800274ab3b3
+           CLIENTID=010800274ab3b3
+
+Pour stopper NetworkManager : `systemctl stop NetworkManager`
+
+Pour activer systemc-networkd : `systemctl start systemd-networkd`
+
+Configuration de /etc/systemd/network/enp0s3network :
+
+>          [Match]
+
+           Key=enp0s3
+
+           [Network]
+           
+           Address=10.0.2.10/24
+           
+           GATEWAY=10.0.2.1
+           
+           DNS=10.33.10.20
 
 
 
