@@ -15,13 +15,27 @@ La commande `ps --ppid 2 -p 2 --deselect` permet de lister les processus systèm
 
 > [admin@localhost root]$ timedatectl
 
->               Local time: ven. 2019-11-29 11:06:51 CET
+               Local time: ven. 2019-11-29 11:06:51 CET
 
->           Universal time: ven. 2019-11-29 10:06:51 UTC
+           Universal time: ven. 2019-11-29 10:06:51 UTC
 
->                 RTC time: ven. 2019-11-29 10:04:22
+                 RTC time: ven. 2019-11-29 10:04:22
 
->                Time zone: Europe/Paris (CET, +0100)
+                Time zone: Europe/Paris (CET, +0100)
+                
+                System clock synchronized: no
+                
+              NTP service: active
+
+
+
+
+Le Local Time correspond à l'heure de la machine sur son fuseau horaire, le Universal Time correspond à l'heure  "universelle" UTC 0 bien connue et le RTC Time correspond à l'horloge matérielle interne à la machine qui conserve l'heure même lorsqu'il est éteint. Cette horloge est utile pour suivre les modifications des dossier de manière très precise.
+
+`timedatectl set-timezone Europe/Paris` pour passer sur le fuseau horaire français.
+
+`timedatectl set-ntp 0` permet de desactiver le ntp.
+>               NTP service: inactive
 
 
 
