@@ -172,6 +172,8 @@ La commande `systemd-analyze plot > graphe.svg` nous permet de génerer un grapi
 
 ![alt text](https://github.com/LPresence/LEOpensource/blob/master/graphe.svg "graphe séquence boot 1")
 
+On peut observer que le service sshd à mis 223ms à démmarer.
+
 ## Cgroups
 
 La commande `ps -e -o pid,cmd,cgroup` affiche les differents processus accompagnés de leurs cgroups. On peut voir que le cgroup utilisé par notre session ssh est `0::/user.slice/user-0.slice/session-4.scope`.
