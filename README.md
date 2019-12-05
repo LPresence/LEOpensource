@@ -240,16 +240,19 @@ Il est par exemple possible de restreindre encore plus son execution avec des pa
 
 ## Petit skip to creation de services 
 
->          
+>  cat /etc/systemd/system/srvweb.service        
+           
            [Unit]
            
            Description=mon service web
            
            After=network.target
            
+           [Service]
+           
            StartLimitIntervalSec=0[Service]
            
-           Type=simple
+           Type=forking
            
            Restart=always
            
@@ -257,9 +260,29 @@ Il est par exemple possible de restreindre encore plus son execution avec des pa
            
            User=centos
            
-           ExecStart=/usr/bin/nginx
+           PIDFile=/run/nginx.pid
            
-           ExecStop=/
+           KillSignal=SIGQUIT
+           
+           TimeoutStopSec=5
+           
+           KillMode=mixed
+           
+           PrivateTmp=true
+           
+           ExecStartPre=/usr/bin/firewall-cmd --add-port 80/tcp
+           
+           ExecStartPre=/usr/bin/firewall-cmd --add-port 80/tcp --permanent
+           
+           ExecStopPost=/usr/bin/firewall-cmd --remove-port 80/tcp
+           
+           ExecStartPre=/usr/bin/rm -f /run/nginx.pid
+           
+           ExecStartPre=/usr/sbin/nginx -t
+           
+           ExecStopPost=/usr/bin/firewall-cmd --remove-port 80/tcp --permanent
+           
+           ExecStart=/usr/sbin/nginx -D
            
            MemoryMax=512M
 
@@ -267,4 +290,8 @@ Il est par exemple possible de restreindre encore plus son execution avec des pa
            
            WantedBy=multi-user.target
 
+Pour lancer se service au demarrage on peut lancer la commande `systemctl enable srvweb.service` 
+
+
+La commande `systemctl enable` créera un ensemble de liens symboliques, tel que décrit dans la section "[Installer]" du fichier d'unité indiqué. Une fois les liens symboliques créés, la configuration du gestionnaire système est rechargée (d'une manière équivalente à daemon-reload), afin de garantir que les modifications sont prises en compte immédiatement.
 
